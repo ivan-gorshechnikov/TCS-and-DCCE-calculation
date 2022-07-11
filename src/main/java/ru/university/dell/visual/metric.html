@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .inner {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+</style>
+<link rel="stylesheet" href="button.css">
+<link rel="stylesheet" href="sidebar.css">
+<script async src="//www.google-analytics.com/analytics.js"></script>
+<script src="https://www.chartjs.org/dist/2.6.0/Chart.bundle.js"></script>
+<script src="generateFirstPage.js"></script>
+<script src="pieChart.js"></script>
+<script src="sce.js"></script>
+
+<div class="main" id="metrics">
+    <div class="container">
+        <nav class="metric-nav" aria-label="Main menu" id="metric-nav">
+            <ul class="metric-menu">
+                <script>genMetricsChoice();</script>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div id="TCS" class="inner">
+        <div id="mock-data">
+            <table border="1" id="mock-data-table" style='font-size:50%'>
+                <script>createMock();</script>
+                <caption>Mock-data for TCS metric</caption>
+            </table>
+        </div>
+        <p><b>Specify the months for calculating the TCS metric separated by commas</b><br>
+            <label>
+                <input id="chosen-month" type="text" size="40">
+            </label>
+            <button type="button" onclick="getTCSMetric()" class="custom-btn btn-13">
+                Calculate
+            </button>
+        </p>
+        <div id="test-result">
+        </div>
+    </div>
+    <div id="SCE" class="show">
+        <table border="1" id="sce-data-table" style='font-size:50%'>
+            <tr>
+                <th>
+                    Id node
+                </th>
+                <th>
+                    Start time
+                </th>
+                <th>
+                    End time
+                </th>
+            </tr>
+            <script>createNodesTable();</script>
+            <caption>Mock-data for SCE metric</caption>
+        </table>
+        <p><b>Specify ids for calculating the SCE metric separated by commas</b><br>
+            <label>
+                <select id="load-selector">
+                    <option value="CPU">CPU</option>
+                    <option value="RAM">RAM</option>
+                </select>
+                <input id="chosen-id" type="text" size="40">
+            </label>
+            <button type="button" onclick="getSCEMetric()" class="custom-btn btn-13">
+                Calculate
+            </button>
+        </p>
+        <div id="div-sce-result">
+
+        </div>
+    </div>
+
+    <div id="DCCE" class="inner">
+        <p><b>DCCE</b><br>
+    </div>
+</div>
+
+
+<div class="sidenav">
+    <a href="index.html">About program</a>
+    <a>Counting metrics</a>
+    <a href="load_dump.html">Load dump</a>
+</div>
+</body>
+</html>

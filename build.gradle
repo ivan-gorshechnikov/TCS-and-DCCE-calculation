@@ -1,0 +1,60 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+
+group 'org.dell.university'
+version '2.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'config'
+            srcDir 'bin'
+            srcDir 'dataset'
+            srcDir 'logs'
+        }
+    }
+}
+
+distributions {
+    main {
+        contents {
+            from('config/config.yaml') { into 'config' }
+            from('dataset/expenditures.csv') { into 'dataset' }
+            from('logs/application.log') {into 'logs'}
+            from('bin/systemMonitor') {into 'bin'}
+        }
+    }
+}
+
+
+dependencies {
+    implementation 'org.jetbrains:annotations:23.0.0'
+    implementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation 'org.yaml:snakeyaml:1.30'
+    implementation 'org.postgresql:postgresql:42.3.6'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'net.sf.opencsv:opencsv:2.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.university.dell.Main'
+        )
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11

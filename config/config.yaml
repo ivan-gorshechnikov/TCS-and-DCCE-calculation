@@ -1,0 +1,91 @@
+database:
+  host: "127.0.0.1"
+  port: 5432
+  ssl: false
+  name: "load_dump"
+  user: "ivangorshechnikov"
+  password: ""
+category_1:
+  name: "Product development"
+  category_11:
+    name: "Сreation of a software product"
+    category_111:
+      name: "Development complexity, hours"
+      type: "multiply"
+    category_112:
+      name: "Hourly wages, rub"
+      type: "multiply"
+  category_12:
+    name: "Сapital investments"
+    category_121:
+      name: "Cost of equipment, rub"
+      type: "sum"
+    category_122:
+      name: "Remaining spending to personal, rub"
+      type: "sum"
+category_2:
+  name: "Operations and Support"
+  category_21:
+    name: "Fix bugs"
+    category_211:
+      name: "Development complexity, hours"
+      type: "multiply"
+    category_212:
+      name: "Hourly wages, rub"
+      type: "multiply"
+  category_22:
+    name: "Development of new versions"
+    category_221:
+      name: "Development complexity, hours"
+      type: "multiply"
+    category_222:
+      name: "Hourly wages, rub"
+      type: "multiply"
+  category_23:
+    name: "Server support"
+    category_231:
+      name: "Server support cost, rub"
+      type: "sum"
+category_3:
+  name: "Overheads"
+  category_31:
+    name: "Electricity"
+    category_311:
+      name: "Used total electricity for a month, kW*h"
+      type: "multiply"
+    category_312:
+      name: "Cost of kW*h, rub"
+      type: "multiply"
+  category_32:
+    name: "Building rental"
+    category_321:
+      name: "Cost rent for a month, rub"
+      type: "sum"
+category_4:
+  name: "Professional services"
+  category_41:
+    name: "Website development"
+    category_411:
+      name: "Website development cost, rub"
+      type: "sum"
+  category_42:
+    name: "Server software"
+    category_421:
+      name: "Server software cost, rub"
+      type: "sum"
+category_5:
+  name: "Sales and marketing"
+  category_51:
+    name: "CRM system"
+    category_511:
+      name: "Cost of CRM, rub"
+      type: "sum"
+  category_52:
+    name: "Advertising"
+    category_521:
+      name: "Advertising budget"
+      type: "sum"
+
+
+
+
