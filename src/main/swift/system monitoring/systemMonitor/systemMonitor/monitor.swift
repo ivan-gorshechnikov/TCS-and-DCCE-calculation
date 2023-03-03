@@ -1,15 +1,7 @@
-//
-//  monitor.swift
-//  systemMonitor
-//
-//  Created by Иван Горшечников on 21.06.2022.
-//
-
 import Yaml
 import Foundation
 import PostgresClientKit
 import SystemKit
-
 
 let queue = DispatchQueue.global(qos: .default)
 
@@ -45,22 +37,19 @@ func openConnection(configPath : String) throws -> Connection {
     return connection
 }
 
-func startRecord(connection:Connection, idNode: Int) throws
-{
+func startRecord(connection:Connection, idNode: Int) throws {
     let sql = "insert into nodes (id_node, \"RAM_size\", start_time) values (\(idNode), \(System.physicalMemory() * 1024), '\(Date().postgresTimestampWithTimeZone)')"
     let statement = try connection.prepareStatement(text: sql).execute()
     defer { statement.close() }
 }
 
-func endRecord(connection:Connection, idNode: Int) throws
-{
+func endRecord(connection:Connection, idNode: Int) throws {
     let sql = "update nodes set end_time = '\(Date().postgresTimestampWithTimeZone)' where id_node = \(idNode)"
     let statement = try connection.prepareStatement(text: sql).execute()
     defer { statement.close() }
 }
 
-func enterRecords(connection : Connection, idNodes: Int, interval: Int) throws
-{
+func enterRecords(connection : Connection, idNodes: Int, interval: Int) throws {
     var idNodeLoadDump = try! getMaxIdNode(connection: connection, table: "node_load_dump", column: "id_record") + 1
     var sys = System()
     
@@ -75,32 +64,25 @@ func enterRecords(connection : Connection, idNodes: Int, interval: Int) throws
     }
 }
 
-func startMonitoring(interval: Int)
-{
+func startMonitoring(interval: Int) {
     do {
-        if !isRun
-        {
+        if !isRun {
             isRun = true
             let connection = try openConnection(configPath: "/Users/ivangorshechnikov/Xcode/Test/config.yaml")
             defer {connection.close()}
             idNode = try! getMaxIdNode(connection: connection, table: "nodes", column: "id_node") + 1
-
             try startRecord(connection: connection, idNode: idNode)
-            
             try enterRecords(connection: connection, idNodes: idNode, interval: interval)
         }
-
     }
     catch {
         print(error) // better error handling goes here
     }
 }
 
-func endMonitoring()
-{
-    do{
-        if isRun
-        {
+func endMonitoring() {
+    do {
+        if isRun {
             isRun = false
             let connection = try openConnection(configPath: "/Users/ivangorshechnikov/Xcode/Test/config.yaml")
             defer {connection.close()}
@@ -108,6 +90,6 @@ func endMonitoring()
         }
     }
     catch {
-        print(error) // better error handling goes here
+        print(error)
     }
 }
