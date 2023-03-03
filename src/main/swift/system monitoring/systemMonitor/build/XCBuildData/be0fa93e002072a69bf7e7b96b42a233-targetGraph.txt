@@ -1,0 +1,74 @@
+Target dependency graph (28 targets)
+Yaml in Yaml, no dependencies
+Yaml in Yaml, depends on:
+Yaml in Yaml (explicit)
+PerfectCHTTPParser in PerfectHTTPServer, no dependencies
+PerfectLib in PerfectLib, no dependencies
+PerfectLib in PerfectLib, depends on:
+PerfectLib in PerfectLib (explicit)
+PerfectThread in PerfectThread, no dependencies
+PerfectThread in PerfectThread, depends on:
+PerfectThread in PerfectThread (explicit)
+COpenSSL in COpenSSL, no dependencies
+COpenSSL in COpenSSL, depends on:
+COpenSSL in COpenSSL (explicit)
+PerfectCrypto in PerfectCrypto, depends on:
+PerfectLib in PerfectLib (explicit)
+PerfectThread in PerfectThread (explicit)
+COpenSSL in COpenSSL (explicit)
+PerfectCrypto in PerfectCrypto, depends on:
+PerfectCrypto in PerfectCrypto (explicit)
+PerfectLib in PerfectLib (explicit)
+PerfectThread in PerfectThread (explicit)
+COpenSSL in COpenSSL (explicit)
+PerfectNet in PerfectNet, depends on:
+PerfectCrypto in PerfectCrypto (explicit)
+PerfectThread in PerfectThread (explicit)
+PerfectNet in PerfectNet, depends on:
+PerfectNet in PerfectNet (explicit)
+PerfectCrypto in PerfectCrypto (explicit)
+PerfectThread in PerfectThread (explicit)
+PerfectHTTP in PerfectHTTP, depends on:
+PerfectLib in PerfectLib (explicit)
+PerfectNet in PerfectNet (explicit)
+PerfectHTTP in PerfectHTTP, depends on:
+PerfectHTTP in PerfectHTTP (explicit)
+PerfectLib in PerfectLib (explicit)
+PerfectNet in PerfectNet (explicit)
+PerfectCZlib in PerfectCZlib, no dependencies
+PerfectCZlib in PerfectCZlib, depends on:
+PerfectCZlib in PerfectCZlib (explicit)
+PerfectHTTPServer in PerfectHTTPServer, depends on:
+PerfectCHTTPParser in PerfectHTTPServer (explicit)
+PerfectNet in PerfectNet (explicit)
+PerfectHTTP in PerfectHTTP (explicit)
+PerfectCZlib in PerfectCZlib (explicit)
+PerfectHTTPServer in PerfectHTTPServer, depends on:
+PerfectHTTPServer in PerfectHTTPServer (explicit)
+PerfectCHTTPParser in PerfectHTTPServer (explicit)
+PerfectNet in PerfectNet (explicit)
+PerfectHTTP in PerfectHTTP (explicit)
+PerfectCZlib in PerfectCZlib (explicit)
+Socket in Socket, no dependencies
+Socket in Socket, depends on:
+Socket in Socket (explicit)
+SSLService in SSLService, depends on:
+Socket in Socket (explicit)
+SSLService in SSLService, depends on:
+SSLService in SSLService (explicit)
+Socket in Socket (explicit)
+PostgresClientKit in PostgresClientKit, depends on:
+Socket in Socket (explicit)
+SSLService in SSLService (explicit)
+PostgresClientKit in PostgresClientKit, depends on:
+PostgresClientKit in PostgresClientKit (explicit)
+Socket in Socket (explicit)
+SSLService in SSLService (explicit)
+SystemKit in SystemKit, no dependencies
+SystemKit in SystemKit, depends on:
+SystemKit in SystemKit (explicit)
+systemMonitor in systemMonitor, depends on:
+Yaml in Yaml (explicit)
+PerfectHTTPServer in PerfectHTTPServer (explicit)
+PostgresClientKit in PostgresClientKit (explicit)
+SystemKit in SystemKit (explicit)
