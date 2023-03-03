@@ -76,7 +76,7 @@ func startMonitoring(interval: Int) {
         }
     }
     catch {
-        print(error) // better error handling goes here
+        print(error)
     }
 }
 
