@@ -2,12 +2,15 @@ package ru.university.dell.metrics.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
-import ru.university.dell.metrics.analyzer.DCCEValue;
-import ru.university.dell.metrics.analyzer.SCEValue;
-import ru.university.dell.metrics.analyzer.TCSValue;
-import ru.university.dell.metrics.model.*;
-import ru.university.dell.metrics.controller.model.DCCEBody;
-import ru.university.dell.metrics.services.LoadType;
+import ru.university.dell.analyzer.DCCEValue;
+import ru.university.dell.analyzer.SCEValue;
+import ru.university.dell.analyzer.TCSValue;
+import ru.university.dell.controller.model.TCSBody;
+import ru.university.dell.database.DbConnector;
+import ru.university.dell.model.*;
+import ru.university.dell.controller.model.DCCEBody;
+import ru.university.dell.controller.model.SCEBody;
+import ru.university.dell.services.LoadType;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
@@ -67,17 +70,18 @@ public class MetricController {
 
     @GetMapping("/metric/dcce")
     @ResponseBody
-    public double getDcce(@RequestBody DCCEBody dcceBody, HttpServletResponse response) {
-        if (dcceBody.getType() == null || dcceBody.getId() == null) {
+    public double getDcce(@RequestParam(name = "ids") int[] ids, @RequestParam(name = "type") LoadType type,
+                          HttpServletResponse response) {
+        if (type == null || ids == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return -1;
         }
-        ArrayList<Integer> arrayId = new ArrayList<>(dcceBody.getId().length);
-        for (int i : dcceBody.getId()) {
+        ArrayList<Integer> arrayId = new ArrayList<>(ids.length);
+        for (int i : ids) {
             arrayId.add(i);
         }
         try {
-            return new DCCEValue(new DCCE(arrayId, dcceBody.getType())).getResult();
+            return new DCCEValue(new DCCE(arrayId, type)).getResult();
         } catch (IllegalArgumentException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } catch (IllegalStateException e) {
@@ -93,11 +97,11 @@ public class MetricController {
                 MetricType.DCCE.toString()});
     }
 
-    @GetMapping("/metric/nodes")
-    public Map<String, Object> getNodes() {
+    @GetMapping(value="/metric/nodes", produces = "application/json")
+    public NodesInfo getNodes() {
         logger.info("Get nodes");
         try {
-            return new NodesInfo().getNodesInfo();
+            return new NodesInfo();
         } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace();
         }

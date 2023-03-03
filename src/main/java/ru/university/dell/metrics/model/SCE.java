@@ -1,9 +1,9 @@
 package ru.university.dell.metrics.model;
 
-import ru.university.dell.metrics.database.DbConnector;
+import ru.university.dell.database.DbConnector;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
-import ru.university.dell.metrics.services.LoadType;
+import ru.university.dell.services.LoadType;
 
 import java.io.FileNotFoundException;
 import java.sql.*;

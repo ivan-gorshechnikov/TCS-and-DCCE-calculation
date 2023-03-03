@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.analyzer;
 
-import ru.university.dell.metrics.model.SCE;
-import ru.university.dell.metrics.services.SCECounter;
+import ru.university.dell.model.SCE;
+import ru.university.dell.services.SCECounter;
 
 public class SCEValue implements MetricValue {
     private final double result;

@@ -2,18 +2,19 @@ package ru.university.dell.metrics.database;
 
 import org.apache.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
+import ru.university.dell.services.GeneralProperties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Map;
 
-import static ru.university.dell.metrics.database.DbConfig.*;
+import static ru.university.dell.database.DbConfig.*;
 
 public class DbSettings {
     private static final Logger logger = Logger.getLogger(DbSettings.class);
 
-    private final String configPath = "./config/config.yaml";
+    private final String configPath = GeneralProperties.getConfigPath();
     private final String url;
     private final String user;
     private final String password;

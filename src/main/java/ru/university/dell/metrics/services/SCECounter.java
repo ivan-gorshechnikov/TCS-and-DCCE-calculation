@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.services;
 
-import ru.university.dell.metrics.model.Pair;
-import ru.university.dell.metrics.model.SCE;
+import ru.university.dell.model.Pair;
+import ru.university.dell.model.SCE;
 import org.apache.log4j.Logger;
 
 public class SCECounter {

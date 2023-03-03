@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.analyzer;
 
-import ru.university.dell.metrics.model.DCCE;
-import ru.university.dell.metrics.services.DCCECounter;
+import ru.university.dell.model.DCCE;
+import ru.university.dell.services.DCCECounter;
 
 public class DCCEValue implements MetricValue {
     private final DCCE dcce;

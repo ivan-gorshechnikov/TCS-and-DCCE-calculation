@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.services;
 
-import ru.university.dell.metrics.model.DCCE;
-import ru.university.dell.metrics.model.SCE;
+import ru.university.dell.model.DCCE;
+import ru.university.dell.model.SCE;
 import org.apache.log4j.Logger;
 
 

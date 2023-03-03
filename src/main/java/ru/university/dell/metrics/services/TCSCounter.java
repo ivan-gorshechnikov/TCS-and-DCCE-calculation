@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.services;
 
 import org.apache.log4j.Logger;
-import ru.university.dell.metrics.model.TCS;
+import ru.university.dell.model.TCS;
 
 import java.util.HashMap;
 import java.util.List;

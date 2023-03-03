@@ -1,30 +1,38 @@
-function createNodesTable() {
+function createNodesTable(idTable) {
     let url = "http://localhost:8080/metric/nodes";
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
-        let response = JSON.parse(xhr.responseText);
-        let table = document.getElementById("sce-data-table");
-        for (const responseKey in response) {
-            let tr = document.createElement("tr");
-            let td = document.createElement("th");
-            td.innerText = responseKey;
-            tr.appendChild(td);
-            for (const tdKey in response[responseKey]) {
-                let td = document.createElement("td");
-                let myTZO = new Date().getTimezoneOffset();
-                if (response[responseKey][tdKey] !== null)
-                    td.innerText = String(new Date(new Date(response[responseKey][tdKey]).getTime() + (60000 *
-                        (new Date(response[responseKey][tdKey]).getTimezoneOffset() - myTZO))));
-                else
-                    td.innerText = "broke";
+        if (xhr.status === 200) {
+            let response = JSON.parse(xhr.responseText)["nodesInfo"];
+            let table = document.getElementById(idTable);
+            for (const responseKey in response) {
+                let tr = document.createElement("tr");
+                let td = document.createElement("th");
+                td.innerText = responseKey;
                 tr.appendChild(td);
+                for (const tdKey in response[responseKey]) {
+                    let td = document.createElement("td");
+                    if (response[responseKey][tdKey] !== null)
+                        td.innerText = String(convertToCurrentTZO(response[responseKey][tdKey]));
+                    else
+                        td.innerText = "working...";
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
             }
-            table.appendChild(tr);
         }
     }
     xhr.open("GET", url, false);
     xhr.send()
+}
+
+
+function convertToCurrentTZO(time)
+{
+    let myTZO = new Date().getTimezoneOffset();
+    return new Date(new Date(time).getTime() + (60000 *
+        (new Date(time).getTimezoneOffset() - myTZO)))
 }
 
 function getSCEMetric() {
@@ -36,12 +44,6 @@ function getSCEMetric() {
     }
 
     arr = input.value.split(',');
-    // try {
-    //     arr = Array.from(input.value);
-    // } catch (SyntaxError) {
-    //     alert("Enter numbers separated by commas pls")
-    //     return;
-    // }
 
     var selection = document.getElementById("load-selector");
     var type = selection.value;
@@ -57,16 +59,18 @@ function getSCEMetric() {
         let xhrSCE = new XMLHttpRequest();
         let url = "http://localhost:8080/metric/sce?";
         console.log(arr[i]);
-        url += "id="+arr[i] + "&type=" + type;
+        url += "id=" + arr[i] + "&type=" + type;
         xhrSCE.onreadystatechange = function () {
-            let p = document.getElementById("result-sce-" + i);
-            if (p === null) {
-                let p = document.createElement("p");
-                p.id = "result-sce-" + i;
-                p.innerText = "Result of SCE metric for " + arr[i] + " ids is " + xhrSCE.responseText + " for " + type;
-                divSCE.appendChild(p);
-            } else {
-                p.innerText = "Result of SCE metric for " + arr[i] + " ids is " + xhrSCE.responseText + " for " + type;
+            if (xhrSCE.status === 200) {
+                let p = document.getElementById("result-sce-" + i);
+                if (p === null) {
+                    let p = document.createElement("p");
+                    p.id = "result-sce-" + i;
+                    p.innerText = "Result of SCE metric for " + arr[i] + " id is " + xhrSCE.responseText + " for " + type;
+                    divSCE.appendChild(p);
+                } else {
+                    p.innerText = "Result of SCE metric for " + arr[i] + " id is " + xhrSCE.responseText + " for " + type;
+                }
             }
         }
 

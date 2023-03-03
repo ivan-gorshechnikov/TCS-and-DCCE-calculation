@@ -3,7 +3,8 @@ package ru.university.dell.metrics.controller;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 import org.yaml.snakeyaml.Yaml;
-import ru.university.dell.metrics.services.CSVParser;
+import ru.university.dell.services.CSVParser;
+import ru.university.dell.services.GeneralProperties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,8 +16,8 @@ import java.util.*;
 public class TCSController {
     private static final Logger logger = Logger.getLogger(TCSController.class);
 
-    private final String configPath = "./config/config.yaml";
-    private final String filePath = "./dataset/expenditures.csv";
+    private final String configPath = GeneralProperties.getConfigPath();
+    private final String datasetPath = GeneralProperties.getDatasetPath();
 
     @GetMapping("/metric/tcs/categories")
     public Map<String, Object> getCategoriesName() {
@@ -41,7 +42,7 @@ public class TCSController {
     @GetMapping("/metric/tcs/mock")
     public Map<String, Object> getMockData() {
         Map<String, Object> result = new HashMap<>();
-        List<String[]> data = new CSVParser(filePath).getData();
+        List<String[]> data = new CSVParser(datasetPath).getData();
         result.put("categories", data.get(0));
         for (int i = 1; i < data.size(); i++) {
             result.put(data.get(i)[0], data.get(i));

@@ -1,7 +1,7 @@
 package ru.university.dell.metrics.analyzer;
 
-import ru.university.dell.metrics.model.TCS;
-import ru.university.dell.metrics.services.TCSCounter;
+import ru.university.dell.model.TCS;
+import ru.university.dell.services.TCSCounter;
 
 import java.util.Map;
 

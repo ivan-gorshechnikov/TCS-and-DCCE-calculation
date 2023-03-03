@@ -1,6 +1,6 @@
 package ru.university.dell.metrics.model;
 
-import ru.university.dell.metrics.services.LoadType;
+import ru.university.dell.services.LoadType;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,8 @@ package ru.university.dell.metrics.model;
 
 import org.apache.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
-import ru.university.dell.metrics.services.CSVParser;
+import ru.university.dell.services.CSVParser;
+import ru.university.dell.services.GeneralProperties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,8 +17,8 @@ public class TCS implements Metric {
     private static final Logger logger = Logger.getLogger(SCE.class);
 
     private final List<String[]> data;
-    private final String filePath = "./dataset/expenditures.csv";
-    private final String configPath = "./config/config.yaml";
+    private final String filePath = GeneralProperties.getDatasetPath();
+    private final String configPath = GeneralProperties.getConfigPath();
     private final int month;
 
     public TCS(int month) {

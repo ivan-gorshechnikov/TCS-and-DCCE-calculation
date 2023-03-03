@@ -8,7 +8,7 @@ window.chartColors = {
     grey: 'rgb(201, 203, 207)'
 };
 
-colors = [window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.purple, window.chartColors.red, window.chartColors.yellow, window.chartColors.grey]
+colors = ["#cfa9be", "#a8c5e6", "#bed7ae", "#fbe7a3", "#df9f9d", window.chartColors.yellow, window.chartColors.grey]
 
 function createPieChart(jsonDataTCS) {
     let categories = getCategories();

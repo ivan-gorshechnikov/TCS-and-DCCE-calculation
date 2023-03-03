@@ -1,6 +1,6 @@
 package ru.university.dell.metrics.controller.model;
 
-import ru.university.dell.metrics.services.LoadType;
+import ru.university.dell.services.LoadType;
 
 public class SCEBody {
     private int id = -1;

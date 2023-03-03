@@ -29,9 +29,7 @@ function genMetricsChoice() {
     xhr.open("GET", url, false);
     try {
         xhr.send();
-    }
-    catch (DOMException)
-    {
+    } catch (DOMException) {
         alert("Server does not work. Please start it")
     }
 
@@ -182,18 +180,20 @@ function getTCSMetric() {
         }
     }
     xhrTCS.onreadystatechange = function () {
-        let jsonDataTCS = JSON.parse(xhrTCS.responseText);
-        let p = document.getElementById("overall-result");
-        if (p === null) {
-            let divTCS = document.getElementById("test-result")
-            let p = document.createElement("p");
-            p.id = "overall-result";
-            countOverallResult(p, jsonDataTCS, arr)
-            divTCS.appendChild(p);
-        } else {
-            countOverallResult(p, jsonDataTCS, arr)
+        if (xhrTCS.status === 200) {
+            let jsonDataTCS = JSON.parse(xhrTCS.responseText);
+            let p = document.getElementById("overall-result");
+            if (p === null) {
+                let divTCS = document.getElementById("test-result")
+                let p = document.createElement("p");
+                p.id = "overall-result";
+                countOverallResult(p, jsonDataTCS, arr)
+                divTCS.appendChild(p);
+            } else {
+                countOverallResult(p, jsonDataTCS, arr)
+            }
+            createPieChart(jsonDataTCS)
         }
-        createPieChart(jsonDataTCS)
     }
 
     xhrTCS.open("GET", url, false);

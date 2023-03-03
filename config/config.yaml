@@ -2,9 +2,9 @@ database:
   host: "127.0.0.1"
   port: 5432
   ssl: false
-  name: "load_dump"
-  user: "ivangorshechnikov"
-  password: ""
+  name: "postgres"
+  user: "postgres"
+  password: "postgres"
 category_1:
   name: "Product development"
   category_11:
